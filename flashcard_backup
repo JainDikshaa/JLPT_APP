@@ -1,0 +1,290 @@
+import tkinter as tk
+from tkinter import messagebox
+import json
+import os
+import random
+from PIL import Image, ImageTk
+import pygame
+
+# Initialize sound engine
+pygame.mixer.init()
+
+def play_sound(path):
+    try:
+        pygame.mixer.music.load(path)
+        pygame.mixer.music.play()
+    except:
+        pass
+
+# ========== Animation Helpers ==========
+def fade_in(widget, delay=30, step=0.05):
+    alpha = 0.0
+    def increment():
+        nonlocal alpha
+        alpha += step
+        try:
+            widget.tk.call(widget._w, 'attributes', '-alpha', alpha)
+        except:
+            pass
+        if alpha < 1.0:
+            widget.after(delay, increment)
+    try:
+        widget.tk.call(widget._w, 'attributes', '-alpha', 0.0)
+        increment()
+    except:
+        pass
+
+def add_hover_effect(btn, enter_color, leave_color):
+    btn.bind("<Enter>", lambda e: btn.config(bg=enter_color))
+    btn.bind("<Leave>", lambda e: btn.config(bg=leave_color))
+
+# ========== Sakura Petal Animation ==========
+def create_sakura(canvas):
+    petals = []
+    for _ in range(20):
+        x = random.randint(0, 600)
+        y = random.randint(-500, 0)
+        size = random.randint(2, 6)
+        petal = canvas.create_oval(x, y, x + size, y + size, fill="#ffc0cb", outline="")
+        petals.append((petal, random.uniform(0.5, 1.5), size))
+
+    def animate():
+        for i, (petal, speed, size) in enumerate(petals):
+            canvas.move(petal, 0, speed)
+            coords = canvas.coords(petal)
+            if coords[1] > 500:
+                canvas.coords(petal, random.randint(0, 600), random.randint(-500, 0), random.randint(0, 600) + size, random.randint(-500, 0) + size)
+        canvas.after(50, animate)
+
+    animate()
+
+# ========== Load Flashcard Data ==========
+if os.path.exists("n5_vocab.json"):
+    with open("n5_vocab.json", "r", encoding="utf-8") as f:
+        vocab_data = json.load(f)
+else:
+    vocab_data = {}
+
+if os.path.exists("saved_words.json"):
+    with open("saved_words.json", "r", encoding="utf-8") as f:
+        saved_words = json.load(f)
+else:
+    saved_words = []
+
+# ========== Flashcard Functionality ==========
+def open_learning():
+    learning_window = tk.Toplevel(root)
+    learning_window.title("Chapter-wise Learning")
+    learning_window.geometry("500x600")
+    learning_window.configure(bg="#fff0f5")
+    fade_in(learning_window)
+
+    tk.Label(learning_window, text="Select Chapter:", font=("Arial", 14), bg="#fff0f5").pack(pady=10)
+    chapter_var = tk.StringVar(value="chapter1")
+
+    chapter_menu = tk.OptionMenu(learning_window, chapter_var, *vocab_data.keys())
+    chapter_menu.pack(pady=5)
+
+    japanese_label = tk.Label(learning_window, text="", font=("Yu Gothic", 32, "bold"), bg="#fff0f5")
+    romaji_label = tk.Label(learning_window, text="", font=("Segoe UI", 12, "italic"), bg="#fff0f5", fg="#999")
+    english_label = tk.Label(learning_window, text="", font=("Segoe UI", 14), bg="#fff0f5")
+
+    japanese_label.pack(pady=20)
+    romaji_label.pack()
+    english_label.pack(pady=5)
+
+    index = [0]
+
+    def show_card():
+        chapter = chapter_var.get()
+        flashcards = vocab_data.get(chapter, [])
+        if flashcards:
+            word = flashcards[index[0] % len(flashcards)]
+            japanese_label.config(text=word["japanese"])
+            romaji_label.config(text=word["romaji"])
+            english_label.config(text=word["english"])
+        else:
+            japanese_label.config(text="No words")
+            romaji_label.config(text="")
+            english_label.config(text="")
+
+    def next_card():
+        play_sound("click.mp3")
+        index[0] += 1
+        show_card()
+
+    def save_word():
+        chapter = chapter_var.get()
+        flashcards = vocab_data.get(chapter, [])
+        if flashcards:
+            word = flashcards[index[0] % len(flashcards)]
+            if word not in saved_words:
+                saved_words.append(word)
+                with open("saved_words.json", "w", encoding="utf-8") as f:
+                    json.dump(saved_words, f, ensure_ascii=False, indent=2)
+                play_sound("save.mp3")
+
+    def update_chapter(*args):
+        index[0] = 0
+        show_card()
+
+    chapter_var.trace("w", update_chapter)
+
+    btn_next = tk.Button(learning_window, text="➡️ Next", command=next_card, bg="#c2185b", fg="white")
+    btn_next.pack(pady=6)
+    add_hover_effect(btn_next, "#e91e63", "#c2185b")
+
+    btn_save = tk.Button(learning_window, text="⭐ Save Word", command=save_word, bg="#ff9800", fg="white")
+    btn_save.pack(pady=6)
+    add_hover_effect(btn_save, "#ffa726", "#ff9800")
+
+    show_card()
+
+# ========== Quiz ==========
+def open_quiz():
+    quiz_win = tk.Toplevel(root)
+    quiz_win.title("Chapter-wise Quiz")
+    quiz_win.geometry("500x500")
+    quiz_win.configure(bg="#fff0f5")
+    fade_in(quiz_win)
+
+    tk.Label(quiz_win, text="Select Chapter:", font=("Arial", 14), bg="#fff0f5").pack(pady=10)
+    chapter_var = tk.StringVar(value="chapter1")
+    chapter_menu = tk.OptionMenu(quiz_win, chapter_var, *vocab_data.keys())
+    chapter_menu.pack(pady=5)
+
+    question_label = tk.Label(quiz_win, text="", font=("Arial", 16), wraplength=400, bg="#fff0f5")
+    question_label.pack(pady=20)
+
+    answer_var = tk.StringVar()
+    buttons = []
+    for _ in range(4):
+        btn = tk.Radiobutton(quiz_win, text="", variable=answer_var, value="", font=("Arial", 12), bg="#fff0f5")
+        btn.pack(anchor="w", padx=50)
+        buttons.append(btn)
+
+    feedback_label = tk.Label(quiz_win, text="", font=("Arial", 12), fg="green", bg="#fff0f5")
+    feedback_label.pack(pady=5)
+
+    score = [0]
+    question_count = [0]
+    correct = [""]
+    timer_label = tk.Label(quiz_win, text="", font=("Arial", 12), bg="#fff0f5")
+    timer_label.pack()
+
+    timer_id = [None]
+
+    def submit_answer():
+        if timer_id[0]:
+            quiz_win.after_cancel(timer_id[0])
+            timer_id[0] = None
+
+        user_answer = answer_var.get()
+        if user_answer == correct[0]:
+            score[0] += 1
+            feedback_label.config(text="✅ Correct!", fg="green")
+        else:
+            feedback_label.config(text=f"❌ Wrong! Correct: {correct[0]}", fg="red")
+        question_count[0] += 1
+        quiz_win.after(1000, next_question)
+
+    def countdown(t):
+        if t >= 0:
+            timer_label.config(text=f"Time Left: {t}s")
+            timer_id[0] = quiz_win.after(1000, lambda: countdown(t - 1))
+        else:
+            submit_answer()
+
+    def next_question():
+        chapter = chapter_var.get()
+        flashcards = vocab_data.get(chapter, [])
+        if not flashcards or question_count[0] >= 10:
+            messagebox.showinfo("Quiz Complete", f"Your Score: {score[0]}/10")
+            quiz_win.destroy()
+            return
+
+        question = random.choice(flashcards)
+        correct[0] = question["english"]
+        options = [correct[0]]
+        while len(options) < 4:
+            rand = random.choice(flashcards)["english"]
+            if rand not in options:
+                options.append(rand)
+        random.shuffle(options)
+
+        question_label.config(text=f"What does '{question['japanese']}' mean?")
+        answer_var.set("")
+        for btn, opt in zip(buttons, options):
+            btn.config(text=opt, value=opt)
+
+        submit_btn.config(command=submit_answer)
+
+        if timer_id[0]:
+            quiz_win.after_cancel(timer_id[0])
+        countdown(10)
+
+    submit_btn = tk.Button(quiz_win, text="Submit", font=("Arial", 12), bg="#4caf50", fg="white")
+    submit_btn.pack(pady=10)
+
+    next_question()
+
+# ========== Placeholder Functions ==========
+def open_progress():
+    messagebox.showinfo("Progress", "Progress tracking coming soon!")
+
+def open_updates():
+    messagebox.showinfo("Updates", "Daily Japan updates coming soon!")
+
+# ========== Add Hover Effects to Main Buttons ==========
+def style_main_buttons(btn):
+    add_hover_effect(btn, "#ffc0cb", "#ffccd5")
+
+# ========== Welcome Screen ==========
+root = tk.Tk()
+root.title("JLPT N5 Mastery App")
+root.geometry("600x500")
+root.configure(bg="#ffe4ec")
+fade_in(root)
+
+canvas = tk.Canvas(root, width=600, height=500, bg="#ffe4ec", highlightthickness=0)
+canvas.pack(fill="both", expand=True)
+
+create_sakura(canvas)
+
+welcome_label = tk.Label(
+    canvas,
+    text="✨ Welcome to JLPT N5 Mastery! ✨",
+    font=("Helvetica", 22, "bold"),
+    bg="#ffe4ec",
+    fg="#8b004f"
+)
+canvas.create_window(300, 80, window=welcome_label)
+
+button_font = ("Arial", 16)
+button_color = "#ffccd5"
+
+buttons = [
+    ("📚 Chapter-wise Learning", open_learning),
+    ("📝 Chapter-wise Quiz", open_quiz),
+    ("📈 Progress Check", open_progress),
+    ("🌸 Daily Japan Updates", open_updates)
+]
+
+for i, (text, cmd) in enumerate(buttons):
+    btn = tk.Button(
+        canvas,
+        text=text,
+        command=cmd,
+        font=button_font,
+        bg=button_color,
+        fg="#000",
+        activebackground="#ffc0cb",
+        relief=tk.RAISED,
+        padx=10,
+        pady=5
+    )
+    canvas.create_window(300, 150 + i * 70, window=btn)
+    style_main_buttons(btn)
+
+play_sound("start.mp3")
+root.mainloop()

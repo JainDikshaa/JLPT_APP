@@ -1,0 +1,170 @@
+{
+  "chapter1": [
+    {"japanese": "わたし", "romaji": "watashi", "english": "I, me"},
+    {"japanese": "あなた", "romaji": "anata", "english": "you"},
+    {"japanese": "せんせい", "romaji": "sensei", "english": "teacher"},
+    {"japanese": "がくせい", "romaji": "gakusei", "english": "student"},
+    {"japanese": "かいしゃいん", "romaji": "kaishain", "english": "company employee"}
+  ],
+  "chapter2": [
+    {"japanese": "これ", "romaji": "kore", "english": "this (near me)"},
+    {"japanese": "それ", "romaji": "sore", "english": "that (near you)"},
+    {"japanese": "あれ", "romaji": "are", "english": "that (over there)"},
+    {"japanese": "この", "romaji": "kono", "english": "this ~"},
+    {"japanese": "その", "romaji": "sono", "english": "that ~"}
+  ],
+  "chapter3": [
+    {"japanese": "ここ", "romaji": "koko", "english": "here"},
+    {"japanese": "そこ", "romaji": "soko", "english": "there"},
+    {"japanese": "あそこ", "romaji": "asoko", "english": "over there"},
+    {"japanese": "どこ", "romaji": "doko", "english": "where"},
+    {"japanese": "しょくどう", "romaji": "shokudou", "english": "cafeteria"}
+  ],
+  "chapter4": [
+    {"japanese": "いま", "romaji": "ima", "english": "now"},
+    {"japanese": "〜じ", "romaji": "~ji", "english": "o'clock"},
+    {"japanese": "〜ふん", "romaji": "~fun", "english": "minutes"},
+    {"japanese": "ごぜん", "romaji": "gozen", "english": "a.m."},
+    {"japanese": "ごご", "romaji": "gogo", "english": "p.m."}
+  ],
+  "chapter5": [
+    {"japanese": "いきます", "romaji": "ikimasu", "english": "go"},
+    {"japanese": "きます", "romaji": "kimasu", "english": "come"},
+    {"japanese": "かえります", "romaji": "kaerimasu", "english": "return"},
+    {"japanese": "がっこう", "romaji": "gakkou", "english": "school"},
+    {"japanese": "えき", "romaji": "eki", "english": "station"}
+  ],
+  "chapter6": [
+    {"japanese": "たべます", "romaji": "tabemasu", "english": "eat"},
+    {"japanese": "のみます", "romaji": "nomimasu", "english": "drink"},
+    {"japanese": "すいます", "romaji": "suimasu", "english": "smoke"},
+    {"japanese": "みます", "romaji": "mimasu", "english": "see, watch"},
+    {"japanese": "ききます", "romaji": "kikimasu", "english": "listen, hear"}
+  ],
+  "chapter7": [
+    {"japanese": "あげます", "romaji": "agemasu", "english": "give"},
+    {"japanese": "もらいます", "romaji": "moraimasu", "english": "receive"},
+    {"japanese": "かします", "romaji": "kashimasu", "english": "lend"},
+    {"japanese": "かります", "romaji": "karimasu", "english": "borrow"},
+    {"japanese": "おしえます", "romaji": "oshiemasu", "english": "teach"}
+  ],
+  "chapter8": [
+    {"japanese": "しずか（な）", "romaji": "shizuka (na)", "english": "quiet"},
+    {"japanese": "にぎやか（な）", "romaji": "nigiyaka (na)", "english": "lively"},
+    {"japanese": "ゆうめい（な）", "romaji": "yuumei (na)", "english": "famous"},
+    {"japanese": "しんせつ（な）", "romaji": "shinsetsu (na)", "english": "kind"},
+    {"japanese": "ひま（な）", "romaji": "hima (na)", "english": "free (time)"}
+  ],
+  "chapter9": [
+    {"japanese": "わかります", "romaji": "wakarimasu", "english": "understand"},
+    {"japanese": "あります", "romaji": "arimasu", "english": "have, exist (inanimate)"},
+    {"japanese": "すき（な）", "romaji": "suki (na)", "english": "like"},
+    {"japanese": "きらい（な）", "romaji": "kirai (na)", "english": "dislike"},
+    {"japanese": "じょうず（な）", "romaji": "jouzu (na)", "english": "skillful"}
+  ],
+  "chapter10": [
+    {"japanese": "います", "romaji": "imasu", "english": "exist (animate)"},
+    {"japanese": "おとこのひと", "romaji": "otoko no hito", "english": "man"},
+    {"japanese": "おんなのひと", "romaji": "onna no hito", "english": "woman"},
+    {"japanese": "いぬ", "romaji": "inu", "english": "dog"},
+    {"japanese": "ねこ", "romaji": "neko", "english": "cat"}
+  ],
+  "chapter11": [
+    {"japanese": "ひとつ", "romaji": "hitotsu", "english": "one (thing)"},
+    {"japanese": "ふたつ", "romaji": "futatsu", "english": "two (things)"},
+    {"japanese": "みっつ", "romaji": "mittsu", "english": "three (things)"},
+    {"japanese": "いくつ", "romaji": "ikutsu", "english": "how many (things)"},
+    {"japanese": "〜にん", "romaji": "~nin", "english": "people (counter)"}
+  ],
+  "chapter12": [
+    {"japanese": "かんたん（な）", "romaji": "kantan (na)", "english": "easy"},
+    {"japanese": "ちかい", "romaji": "chikai", "english": "near"},
+    {"japanese": "とおい", "romaji": "tooi", "english": "far"},
+    {"japanese": "はやい", "romaji": "hayai", "english": "fast, early"},
+    {"japanese": "おそい", "romaji": "osoi", "english": "slow, late"}
+  ],
+  "chapter13": [
+    {"japanese": "あそびます", "romaji": "asobimasu", "english": "play, enjoy oneself"},
+    {"japanese": "およぎます", "romaji": "oyogimasu", "english": "swim"},
+    {"japanese": "むかえます", "romaji": "mukaemasu", "english": "go to meet, welcome"},
+    {"japanese": "つかれます", "romaji": "tsukaremasu", "english": "get tired"},
+    {"japanese": "けっこんします", "romaji": "kekkon shimasu", "english": "get married"}
+  ],
+  "chapter14": [
+    {"japanese": "つけます", "romaji": "tsukemasu", "english": "turn on"},
+    {"japanese": "けします", "romaji": "keshimasu", "english": "turn off"},
+    {"japanese": "あけます", "romaji": "akemasu", "english": "open"},
+    {"japanese": "しめます", "romaji": "shimemasu", "english": "close"},
+    {"japanese": "いそぎます", "romaji": "isogimasu", "english": "hurry"}
+  ],
+  "chapter15": [
+    {"japanese": "たちます", "romaji": "tachimasu", "english": "stand up"},
+    {"japanese": "すわります", "romaji": "suwarimasu", "english": "sit down"},
+    {"japanese": "つかいます", "romaji": "tsukaimasu", "english": "use"},
+    {"japanese": "おきます", "romaji": "okimasu", "english": "put"},
+    {"japanese": "つくります", "romaji": "tsukurimasu", "english": "make"}
+  ],
+  "chapter16": [
+    {"japanese": "のります", "romaji": "norimasu", "english": "ride, get on"},
+    {"japanese": "おります", "romaji": "orimasu", "english": "get off"},
+    {"japanese": "のりかえます", "romaji": "norikaemasu", "english": "change (trains etc.)"},
+    {"japanese": "あびます", "romaji": "abimasu", "english": "take (a shower)"},
+    {"japanese": "いれます", "romaji": "iremasu", "english": "put in"}
+  ],
+  "chapter17": [
+    {"japanese": "だします", "romaji": "dashimasu", "english": "hand in, submit"},
+    {"japanese": "ぬぎます", "romaji": "nugimasu", "english": "take off (clothes)"},
+    {"japanese": "もっていきます", "romaji": "motte ikimasu", "english": "take (something)"},
+    {"japanese": "もってきます", "romaji": "motte kimasu", "english": "bring (something)"},
+    {"japanese": "しんぱいします", "romaji": "shinpai shimasu", "english": "worry"}
+  ],
+  "chapter18": [
+    {"japanese": "ひきます", "romaji": "hikimasu", "english": "play (instrument)"},
+    {"japanese": "うたいます", "romaji": "utaimasu", "english": "sing"},
+    {"japanese": "あつめます", "romaji": "atsumemasu", "english": "collect"},
+    {"japanese": "すてます", "romaji": "sutemasu", "english": "throw away"},
+    {"japanese": "かえます", "romaji": "kaemasu", "english": "exchange"}
+  ],
+  "chapter19": [
+    {"japanese": "のぼります", "romaji": "noborimasu", "english": "climb"},
+    {"japanese": "とまります", "romaji": "tomarimasu", "english": "stay overnight"},
+    {"japanese": "そうじします", "romaji": "souji shimasu", "english": "clean"},
+    {"japanese": "せんたくします", "romaji": "sentaku shimasu", "english": "do laundry"},
+    {"japanese": "なります", "romaji": "narimasu", "english": "become"}
+  ],
+  "chapter20": [
+    {"japanese": "いります", "romaji": "irimasu", "english": "need"},
+    {"japanese": "しらべます", "romaji": "shirabemasu", "english": "check, investigate"},
+    {"japanese": "なおします", "romaji": "naoshimasu", "english": "repair"},
+    {"japanese": "しゅうりします", "romaji": "shuuri shimasu", "english": "fix"},
+    {"japanese": "でんわします", "romaji": "denwa shimasu", "english": "call"}
+  ],
+  "chapter21": [
+    {"japanese": "おもいます", "romaji": "omoimasu", "english": "think"},
+    {"japanese": "いいます", "romaji": "iimasu", "english": "say"},
+    {"japanese": "たります", "romaji": "tarimasu", "english": "be enough"},
+    {"japanese": "かちます", "romaji": "kachimasu", "english": "win"},
+    {"japanese": "まけます", "romaji": "makemasu", "english": "lose"}
+  ],
+  "chapter22": [
+    {"japanese": "きます", "romaji": "kimasu", "english": "wear (above waist)"},
+    {"japanese": "はきます", "romaji": "hakimasu", "english": "wear (below waist)"},
+    {"japanese": "かぶります", "romaji": "kaburimasu", "english": "put on (headwear)"},
+    {"japanese": "かけます", "romaji": "kakemasu", "english": "put on (glasses)"},
+    {"japanese": "うまれます", "romaji": "umaremasu", "english": "be born"}
+  ],
+  "chapter23": [
+    {"japanese": "ききます", "romaji": "kikimasu", "english": "ask"},
+    {"japanese": "まわします", "romaji": "mawashimasu", "english": "turn, rotate"},
+    {"japanese": "ひきます", "romaji": "hikimasu", "english": "pull"},
+    {"japanese": "かえます", "romaji": "kaemasu", "english": "change"},
+    {"japanese": "さわります", "romaji": "sawarimasu", "english": "touch"}
+  ],
+  "chapter24": [
+    {"japanese": "つれていきます", "romaji": "tsurete ikimasu", "english": "take (someone)"},
+    {"japanese": "つれてきます", "romaji": "tsurete kimasu", "english": "bring (someone)"},
+    {"japanese": "おくります", "romaji": "okurimasu", "english": "escort, send"},
+    {"japanese": "しょうかいします", "romaji": "shoukai shimasu", "english": "introduce"},
+    {"japanese": "あんないします", "romaji": "annai shimasu", "english": "guide, show around"}
+  ]
+}
